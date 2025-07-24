@@ -1,16 +1,19 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config(); // Muy importante para leer las variables de entorno
 
-
-const sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
-  dialect: 'mysql',
-  dialectOptions: {
-    options: { encrypt: true }
-  },
-  define: {
-    timestamps: false
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 3306, // opcional, por si se usa otro puerto
+    dialect: 'mysql',
+    define: {
+      timestamps: false
+    }
   }
-});
+);
 
 async function authenticate() {
   try {
@@ -31,7 +34,7 @@ async function closeConnection() {
 }
 
 module.exports = {
-  sequelize,        
+  sequelize,
   authenticate,
   closeConnection
 };
