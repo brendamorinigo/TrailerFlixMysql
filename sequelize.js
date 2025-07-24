@@ -38,8 +38,8 @@ const Trailer = require('./models/Trailer');
 Trailer.create({
   poster: 'poster1.jpg',
   titulo: 'Stranger Things',
-  categoriaID: 1,          // Asegurate de que exista la categoría con ID 1
-  generoID: 2,             // Asegurate de que exista el género con ID 2
+  categoriaID: 1,          
+  generoID: 2,             
   Resumen: 'Una serie de ciencia ficción ambientada en los 80s.',
   Temporadas: 4,
   Duracion: 45,

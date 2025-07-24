@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Actores = require('../models/actores'); // importás tu modelo
+const Actores = require('../models/actores'); 
 
-// Obtener todos los actores
+// traer todos los actores
 router.get('/', async (req, res) => {
   try {
     const actores = await Actores.findAll();
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Crear un nuevo actor
+// crear un nuevo actor
 router.post('/', async (req, res) => {
   try {
     const nuevoActor = await Actores.create(req.body);

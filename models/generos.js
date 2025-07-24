@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const { sequelize } = require('../conection');
 
 const Genero = sequelize.define('Genero', {
-  generosID: {
+  id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
