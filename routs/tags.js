@@ -1,34 +1,27 @@
-const express = require('express');
-const router = express.Router();
-const { Op } = require('sequelize');
-const { tags, trailers } = require('../models/tags'); 
-
-// Buscar trailers por nombre de tag
 router.get('/tags/:nombre', async (req, res) => {
   const tagNombre = req.params.nombre.toLowerCase();
 
   try {
-    const tag = await tags.findOne({
+    const resultados = await tags.findOne({
       where: {
         nombre: { [Op.like]: `%${tagNombre}%` }
       },
       include: [
         {
           model: trailers,
-          through: { attributes: [] } 
+          through: { attributes: [] } // excluye la tabla intermedia
         }
       ]
     });
 
-    if (!tag || tag.trailers.length === 0) {
+    if (!resultados || resultados.trailers.length === 0) {
       return res.status(404).json({ message: 'No se encontraron trailers con ese tag' });
     }
 
-    res.json(tag.trailers);
+    res.json(resultados.trailers);
+
   } catch (error) {
     console.error('Error al buscar trailers por tag:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 });
-
-module.exports = router;
