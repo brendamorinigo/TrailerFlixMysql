@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-require('dotenv').config(); // Muy importante para leer las variables de entorno
+require('dotenv').config(); 
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -7,7 +7,7 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 3306, // opcional, por si se usa otro puerto
+    port: process.env.DB_PORT || 3306, 
     dialect: 'mysql',
     define: {
       timestamps: false
