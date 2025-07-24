@@ -22,6 +22,7 @@ app.post('/actores', async (req, res) => {
     console.error('Error al crear el actor:', error);
     res.status(500).json({ error: 'Error al crear el actor' });
   }
+  res.status(201).json(nuevoActor);
 });
 
 module.exports = router;
